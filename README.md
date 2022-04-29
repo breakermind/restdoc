@@ -25,16 +25,16 @@ php artisan vendor:publish --tag=restdoc-routes
 ```php
 <?php
 // Add in routes/routes.php
-require_once('restdoc.php');
+require_once('restdoc/routes.php');
 ```
 
-### Edit views (optional)
+## Edit views (optional)
 ```sh
 # edit views views/vendor/restdoc
 php artisan vendor:publish --tag=restdoc-views --force
 ```
 
-### Publish views, config (optional)
+## Publish config (optional)
 ```sh
 # create payu config/restdoc.php file
 php artisan vendor:publish --tag=restdoc-config
