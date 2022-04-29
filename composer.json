@@ -1,0 +1,29 @@
+{
+	"name": "breakermind/restdoc",
+	"description": "Rest api documentation library.",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Marcin Łukaszewski",
+			"email": "m.luk.box@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {},
+	"autoload": {
+		"classmap": [
+			"src/"
+		],
+		"psr-4": {
+			"RestDoc\\": "src/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"RestDoc\\RestDocServiceProvider"
+			]
+		}
+	}
+}
