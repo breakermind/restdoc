@@ -21,7 +21,7 @@ composer dump-autoload -o
 php artisan vendor:publish --tag=restdoc-routes
 ```
 
-### Add restdoc routes
+### Add RestDoc routes (restdoc example)
 ```php
 <?php
 // Add in routes/routes.php
