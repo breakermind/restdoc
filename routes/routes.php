@@ -14,7 +14,7 @@ Route::get('/doc/v1', function () {
 	$doc = new Doc('User Api', 'User rest api documentation.');
 
 	// Rest Api Part
-	$part = new Part('User', 'Users operations.');
+	$part = new Part('User', 'Users rest api routes.');
 
 	// Get
 	$part->add(
@@ -80,7 +80,26 @@ Route::get('/doc/v1', function () {
 		true
 	);
 
-	// Get
+	// Put
+	$part->add(
+		Http::Put,
+		'/users/{userId}',
+		'Update user',
+		[
+			Param::get('userId', 'integer', 'User id', true),
+			Param::get('email', 'string', 'User email address', true, 'user@email.here'),
+			Param::get('name', 'string', 'User name', true, 'User Name'),
+		],
+		[
+			Resp::get(200, 'Success'),
+			Resp::get(401, 'Unauthenticated'),
+			Resp::get(402, 'Unauthorized'),
+			Resp::get(404, 'Not Found'),
+		],
+		true
+	);
+
+	// Delete
 	$part->add(
 		Http::Delete,
 		'/users/{userId}',
@@ -104,9 +123,9 @@ Route::get('/doc/v1', function () {
 	$doc->part($part);
 
 	// Show json
-	return $doc->parts();
+	// return $doc->parts();
 
 	// Show html
-	// return view('restdoc::main', ['doc' => $doc]);
+	return view('restdoc::main', ['doc' => $doc]);
 
 })->name('doc.v1');

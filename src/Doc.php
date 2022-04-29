@@ -6,10 +6,10 @@ class Doc
 {
 	private $parts = [];
 
-	function __construct($title, $description, $version = 1.0)
+	function __construct($title, $desc, $version = 1.0)
 	{
 		$this->title = $title;
-		$this->description = $description;
+		$this->desc = $desc;
 		$this->version = $version;
 	}
 

@@ -13,11 +13,11 @@ enum Http: string
 	public function label(): string
 	{
 		return match($this) {
-			static::Get => 'Get',
-			static::Post => 'Post',
-			static::Put => 'Put',
-			static::Patch => 'Patch',
-			static::Delete => 'Delete',
+			static::Get => 'GET',
+			static::Post => 'POST',
+			static::Put => 'PUT',
+			static::Patch => 'PATCH',
+			static::Delete => 'DELETE',
 		};
 	}
 }

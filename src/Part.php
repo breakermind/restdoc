@@ -6,13 +6,13 @@ use RestDoc\Http;
 
 class Part
 {
-	public $methods = [];
+	private $methods = [];
 
-	function __construct($title, $description)
+	function __construct($title, $desc)
 	{
 		$this->id = uniqid();
 		$this->title = $title;
-		$this->description = $description;
+		$this->desc = $desc;
 	}
 
 	function add(Http $method, $route, $desc, array $params, array $responses, $auth = false)
@@ -25,5 +25,9 @@ class Part
 			'responses' => $responses,
 			'auth' => $auth
 		];
+	}
+
+	function methods() {
+		return $this->methods;
 	}
 }
