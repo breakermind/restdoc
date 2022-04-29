@@ -28,6 +28,11 @@ php artisan vendor:publish --tag=restdoc-routes
 require_once('restdoc/routes.php');
 ```
 
+### Run in browser
+```sh
+http://localhost/doc/v1
+```
+
 ## Edit views (optional)
 ```sh
 # edit views views/vendor/restdoc
