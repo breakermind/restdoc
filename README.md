@@ -184,3 +184,6 @@ php artisan vendor:publish --tag=restdoc-config
 # with provider
 php artisan vendor:publish --provider="RestDoc\RestDocServiceProvider.php" --tag=restdoc-config
 ```
+
+## Image
+<img src="https://raw.githubusercontent.com/breakermind/restdoc/main/restdoc.png" width="100%">
