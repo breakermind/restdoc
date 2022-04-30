@@ -1,5 +1,5 @@
 # RestDoc
-Rest Api documentation generator for PHP projects.
+Laravel Rest Api documentation generator for PHP projects.
 
 ## Install
 ```sh
