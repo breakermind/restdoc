@@ -167,10 +167,10 @@
 											<span class="bold"> {{ $p['code'] }} </span>  {{ $p['desc'] }}
 
 											<div class="tab">
-												@if(!empty($p['sample']))
-													<div class="bold__title">Sample:</div>
+												@if(!empty($p['message']))
+													<div class="bold__title">Message:</div>
 													<div class="param__bg">
-														<pre>{{ json_encode(json_decode($p['sample'], true), JSON_PRETTY_PRINT) }}</pre>
+														<pre>{{ json_encode(json_decode($p['message'], true), JSON_PRETTY_PRINT) }}</pre>
 													</div>
 												@endif
 

@@ -4,12 +4,12 @@ namespace RestDoc;
 
 class Resp
 {
-	static function get($code, $desc, $sample = '', $model = '', array $headers = [])
+	static function get($code, $desc, $message = '', $model = '', array $headers = [])
 	{
 		return [
 			'code' => $code,
 			'desc' => $desc,
-			'sample' => $sample,
+			'message' => $message,
 			'model' => $model,
 			'headers' => $headers
 		];
