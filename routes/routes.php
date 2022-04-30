@@ -53,7 +53,10 @@ Route::get('/doc/v1', function () {
 			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
-		true
+		true,
+		[
+			Header::get('Authorization', 'Bearer {token}', 'string'),
+		],
 	);
 
 	// Post
@@ -75,7 +78,12 @@ Route::get('/doc/v1', function () {
 			Resp::get(404, 'Not Found'),
 			Resp::get(422, 'Error', json_encode(['msg' => 'Invalid user email address'])),
 		],
-		true
+		true,
+		[
+			Header::get('Authorization', 'Bearer {token}', 'string'),
+			Header::get('Content-Type', 'application/json', 'string'),
+			Header::get('Accept', 'application/json', 'string'),
+		],
 	);
 
 	// Put
@@ -93,7 +101,10 @@ Route::get('/doc/v1', function () {
 			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
-		true
+		true,
+		[
+			Header::get('Authorization', 'Bearer {token}', 'string'),
+		],
 	);
 
 	// Delete
@@ -112,7 +123,10 @@ Route::get('/doc/v1', function () {
 			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
-		true
+		true,
+		[
+			Header::get('Authorization', 'Bearer {token}', 'string'),
+		],
 	);
 
 	// Add part to docs

@@ -41,8 +41,8 @@
 		.open .part {border-radius: 6px 6px 0px 0px;}
 		.row__details {display: none; float: left; width: 100%; margin: 0px 0px 20px 0px; padding: 10px; border-radius: 6px;}
 		.open + .row__details {display: inherit; font-size: 15px;}
-		.row__details_title {font-size: 18px; font-weight: 700; float: left; width: 100%; padding: 10px; margin: 5px 0px; background: #00339906;}
-		.param__bg {float: left; width: 100%; padding: 10px; margin: 5px 0px; background: #fff; color: #003399}
+		.row__details_title {font-size: 18px; font-weight: 700; float: left; width: 100%; padding: 10px; margin: 5px 0px; background: #00339909; border-radius: 6px;}
+		.param__bg {float: left; width: 100%; padding: 10px; margin: 5px 0px; background: #fff; color: #003399; border-radius: 6px;}
 		.param__details {float: left; width: 100%; padding: 5px 0px;}
 		.bold {color: #039 !important; font-weight: 700}
 		.bold-red {color: #f23 !important; font-weight: 700}
@@ -51,6 +51,13 @@
 		.header__name {font-weight: 700; padding: 5px;}
 		.header__desc {font-weight: 400; padding: 5px;}
 		.header__type {font-weight: 700; padding: 5px;}
+
+		.border-get {border-left: 2px solid #0099ff;}
+		.border-post {border-left: 2px solid #55cc55;}
+		.border-put {border-left: 2px solid #ff9900;}
+		.border-patch {border-left: 2px solid #ff9900;}
+		.border-delete {border-left: 2px solid #ff2200;}
+
 		i {padding: 0px;}
 	</style>
 
@@ -64,8 +71,6 @@
 	<div class="box">
 		<div class="title">{{ $doc->title }}</div>
 		<p>{{ $doc->desc }}</p>
-
-		<div class="title">Rest Api Links</div>
 
 		<div class="menu">
 			@foreach ($doc->parts() as $p)
@@ -94,13 +99,24 @@
 								<div class="route"> {{ $m['route'] }} </div>
 								<div class="description"> {{ $m['desc'] }} </div>
 							</div>
+
 							<div class="row__details part-{{ strtolower($m['method']->label()) }} animate__animated animate__zoomIn">
-								<div class="row__details_title">Parametrs</div>
+
+								@if(!empty($m['headers']))
+									<div class="row__details_title border-{{ strtolower($m['method']->label()) }}">Request headers</div>
+									@foreach ($m['headers'] as $h)
+										<div class="param__details">
+											<span class="bold"> {{ $h['name'] }}  </span>  {{ $h['desc'] }}
+											<span class="bold-red">({{ $h['type'] }})</span>
+										</div>
+									@endforeach
+								@endif
+
+								<div class="row__details_title border-{{ strtolower($m['method']->label()) }}">Parametrs</div>
 								<div>
 									@foreach ($m['params'] as $p)
 										<div class="param__details">
-											<span class="bold"> {{ $p['name'] }} </span>
-											({{ $p['type'] }}) {{ $p['desc'] }}
+											<span class="bold"> {{ $p['name'] }} </span> [{{ $p['type'] }}] {{ $p['desc'] }}
 
 											@if($p['required'] == true)
 												<span class="bold-red">(required)</span>
@@ -125,7 +141,7 @@
 									@endforeach
 								</div>
 
-								<div class="row__details_title">Responses</div>
+								<div class="row__details_title border-{{ strtolower($m['method']->label()) }}">Responses</div>
 								<div>
 									@foreach ($m['responses'] as $p)
 										<div class="param__details">

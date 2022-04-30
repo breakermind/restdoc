@@ -15,7 +15,7 @@ class Part
 		$this->desc = $desc;
 	}
 
-	function add(Http $method, $route, $desc, array $params, array $responses, $auth = false)
+	function add(Http $method, $route, $desc, array $params, array $responses, $auth = false, array $headers = [])
 	{
 		$this->methods[] = [
 			'method' => $method,
@@ -23,7 +23,8 @@ class Part
 			'desc' => $desc,
 			'params' => $params,
 			'responses' => $responses,
-			'auth' => $auth
+			'auth' => $auth,
+			'headers' => $headers,
 		];
 	}
 
