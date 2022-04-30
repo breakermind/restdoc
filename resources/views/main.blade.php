@@ -47,7 +47,7 @@
 		.bold {color: #039 !important; font-weight: 700}
 		.bold-red {color: #f23 !important; font-weight: 700}
 		.bold__title {float: left; width: 100%; padding: 5px 0px; font-weight: 600; font-size: 14px;}
-		.header {display: flex; float: left; width: 100%; padding: 5px 0px; background: #fff; color: #003399}
+		.header {display: flex; float: left; width: 100%; margin-bottom: 5px; padding: 5px; background: #fff; color: #003399; border-radius: 6px;}
 		.header__name {font-weight: 700; padding: 5px;}
 		.header__desc {font-weight: 400; padding: 5px;}
 		.header__type {font-weight: 700; padding: 5px;}
