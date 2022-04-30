@@ -22,18 +22,18 @@ Route::get('/doc/v1', function () {
 		'/users',
 		'Get users list',
 		[
-			Param::get('search', 'string (query)', 'Search user query string', false),
+			Param::get('search', 'string (query)', 'Search users with words', false, '', ''),
 		],
 		[
-			Resp::get(200, 'Success', json_encode(['users' => [
-				['id' => 1, 'email' => 'user1@email.here', 'password' => 'password hash here'],
-				['id' => 2, 'email' => 'user2@email.here', 'password' => 'password hash here'],
-			]])),
+			Resp::get(200, 'Ok', json_encode(['users' => [
+				['id' => 1, 'name' => 'Ala', 'username' => 'foczka', 'newsletter' => 0],
+				['id' => 2, 'name' => 'Marcin', 'username' => 'foczek', 'newsletter' => 1],
+			]]), 'App\Models\User'),
 			Resp::get(401, 'Unauthenticated'),
 			Resp::get(402, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
-		true
+		false
 	);
 
 	// Get
@@ -45,7 +45,7 @@ Route::get('/doc/v1', function () {
 			Param::get('userId', 'integer', 'User id', true),
 		],
 		[
-			Resp::get(200, 'Success', json_encode(['user' => [
+			Resp::get(200, 'Ok', json_encode(['user' => [
 					'id' => '1',
 					'email' => 'user@email.here',
 					'name' => 'Marianek'
@@ -66,16 +66,17 @@ Route::get('/doc/v1', function () {
 		[
 			Param::get('email', 'string', 'User email address', true, 'user@email.here'),
 			Param::get('password', 'string', 'User new password', true, 'UserpPssword69'),
-			Param::get('body', 'json', 'User email and password', true, json_encode([
+			Param::get('body', 'json', 'User email and password', false, json_encode([
 				'email' => 'user@email.here',
 				'password' => 'Secret Pass Here'
 			])),
 		],
 		[
-			Resp::get(200, 'Success'),
+			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been created'])),
 			Resp::get(401, 'Unauthenticated'),
 			Resp::get(402, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
+			Resp::get(422, 'Error', json_encode(['msg' => 'Invalid user email address'])),
 		],
 		true
 	);
@@ -91,7 +92,7 @@ Route::get('/doc/v1', function () {
 			Param::get('name', 'string', 'User name', true, 'User Name'),
 		],
 		[
-			Resp::get(200, 'Success'),
+			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been updated'])),
 			Resp::get(401, 'Unauthenticated'),
 			Resp::get(402, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
@@ -108,9 +109,9 @@ Route::get('/doc/v1', function () {
 			Param::get('userId', 'integer', 'User id', true),
 		],
 		[
-			Resp::get(200, 'Success', json_encode(['id' => '1']), '', [
+			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been deleted']), '', [
 				Header::get('X-Rate-Limit', 'Calls per hour allowed by the user', 'integer'),
-				Header::get('X-Expires-After', 'Date in UTC when user deleted', 'string'),
+				Header::get('X-Deleted-After', 'Date in UTC when user deleted', 'string'),
 			]),
 			Resp::get(401, 'Unauthenticated'),
 			Resp::get(402, 'Unauthorized'),

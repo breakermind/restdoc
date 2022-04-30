@@ -4,7 +4,7 @@ namespace RestDoc;
 
 class Param
 {
-	static function get($name, $type, $desc, $required = false, $sample = '', $default = '', $model = '')
+	static function get($name, $type, $desc, $required = false, $sample = '', $default = '')
 	{
 		return [
 			'name' => $name,
@@ -12,8 +12,7 @@ class Param
 			'desc' => $desc,
 			'required' => $required,
 			'sample' => $sample,
-			'default' => $default,
-			'model' => $model,
+			'default' => $default
 		];
 	}
 }

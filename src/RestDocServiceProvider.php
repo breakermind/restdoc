@@ -39,7 +39,7 @@ class RestDocServiceProvider extends ServiceProvider
 			], 'restdoc-config');
 
 			$this->publishes([
-				__DIR__ . '/../routes' => base_path('routes/restdoc')
+				__DIR__ . '/../routes' => base_path('routes/_restdoc')
 			], 'restdoc-routes');
 
 			// $this->publishes([
