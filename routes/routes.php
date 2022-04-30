@@ -29,8 +29,7 @@ Route::get('/doc/v1', function () {
 				['id' => 1, 'name' => 'Ala', 'username' => 'foczka', 'newsletter' => 0],
 				['id' => 2, 'name' => 'Marcin', 'username' => 'foczek', 'newsletter' => 1],
 			]]), 'App\Models\User'),
-			Resp::get(401, 'Unauthenticated'),
-			Resp::get(402, 'Unauthorized'),
+			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
 		false
@@ -51,8 +50,7 @@ Route::get('/doc/v1', function () {
 					'name' => 'Marianek'
 				]])
 			),
-			Resp::get(401, 'Unauthenticated'),
-			Resp::get(402, 'Unauthorized'),
+			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
 		true
@@ -73,8 +71,7 @@ Route::get('/doc/v1', function () {
 		],
 		[
 			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been created'])),
-			Resp::get(401, 'Unauthenticated'),
-			Resp::get(402, 'Unauthorized'),
+			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 			Resp::get(422, 'Error', json_encode(['msg' => 'Invalid user email address'])),
 		],
@@ -93,8 +90,7 @@ Route::get('/doc/v1', function () {
 		],
 		[
 			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been updated'])),
-			Resp::get(401, 'Unauthenticated'),
-			Resp::get(402, 'Unauthorized'),
+			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
 		true
@@ -113,8 +109,7 @@ Route::get('/doc/v1', function () {
 				Header::get('X-Rate-Limit', 'Calls per hour allowed by the user', 'integer'),
 				Header::get('X-Deleted-After', 'Date in UTC when user deleted', 'string'),
 			]),
-			Resp::get(401, 'Unauthenticated'),
-			Resp::get(402, 'Unauthorized'),
+			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
 		],
 		true
