@@ -17,7 +17,7 @@
 		.box {float: left; width: 100%; padding: 10px; box-sizing: border-box;}
 		a {text-decoration: none; color: #fff; color: #003399; border:  1px solid #003399; background: #00339911;}
 		.title {float: left; width: 100%; color: #003399; font-size: 21px; font-weight: 300; margin-bottom: 10px;}
-		.title-rest {float: left; width: 100%; color: #003399; font-size: 21px; font-weight: 300; margin: 20px 0px 5px 0px;}
+		.title-rest {float: left; width: 100%; color: #003399; font-size: 21px; font-weight: 300; margin: 20px 0px}
 		.menu {float: left; width: 100%;}
 		.menu__link {float: left; width: auto; margin: 10px 10px 10px 0px; padding: 10px 25px; font-weight: 900; border-radius: 6px;}
 
@@ -43,24 +43,30 @@
 		.open .part {border-radius: 6px 6px 0px 0px;}
 		.row__details {display: none; float: left; width: 100%; margin: 0px 0px 20px 0px; padding: 10px; border-radius: 6px;}
 		.open + .row__details {display: inherit; font-size: 15px;}
-		.row__details_title {font-size: 18px; font-weight: 700; float: left; width: 100%; padding: 10px; margin: 5px 0px; background: #00339909; border-radius: 6px;}
-		.param__bg {float: left; width: 100%; padding: 10px; margin: 5px 0px; background: #fff; color: #003399; border-radius: 6px;}
+		.row__details_title {font-size: 18px; font-weight: 700; float: left; width: 100%; padding: 10px; margin: 5px 0px; border-radius: 6px;}
+		.param__bg {float: left; width: 100%; padding: 5px 0px; color: #003399; border-radius: 6px;}
 		.param__details {float: left; width: 100%; padding: 5px 0px;}
 		.bold {color: #039 !important; font-weight: 700}
 		.bold-red {color: #f23 !important; font-weight: 700}
 		.bold__title {float: left; width: 100%; padding: 5px 0px; font-weight: 600; font-size: 14px;}
-		.header {display: flex; float: left; width: 100%; margin-bottom: 5px; padding: 5px; background: #fff; color: #003399; border-radius: 6px;}
-		.header__name {font-weight: 700; padding: 5px;}
-		.header__desc {font-weight: 400; padding: 5px;}
-		.header__type {font-weight: 700; padding: 5px;}
+		.header {display: flex; float: left; width: 100%; padding: 5px 0px}
+		.header__name {font-weight: 700; padding-right: 5px; color: #003399}
+		.header__desc {font-weight: 400; padding-right: 5px;}
+		.header__type {font-weight: 700; padding-right: 5px;}
 
-		.border-get {border-left: 2px solid #0099ff;}
-		.border-post {border-left: 2px solid #55cc55;}
-		.border-put {border-left: 2px solid #ff9900;}
-		.border-patch {border-left: 2px solid #ff9900;}
-		.border-delete {border-left: 2px solid #ff2200;}
+		.border-get {border-bottom: 1px solid #0099ff;}
+		.border-post {border-bottom: 1px solid #55cc55;}
+		.border-put {border-bottom: 1px solid #ff9900;}
+		.border-patch {border-bottom: 1px solid #ff9900;}
+		.border-delete {border-bottom: 1px solid #ff2200;}
+
+		.tab {float: left; width: 100%; padding-left: 35px !important; box-sizing: border-box;}
 
 		i {padding: 0px;}
+
+		@media all and (max-width: 480px) {
+			* { font-size: 14px !important; }
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -114,31 +120,35 @@
 									@endforeach
 								@endif
 
-								<div class="row__details_title border-{{ strtolower($m['method']->label()) }}">Parametrs</div>
+								<div class="row__details_title border-{{ strtolower($m['method']->label()) }}">Parameters</div>
 								<div>
 									@foreach ($m['params'] as $p)
 										<div class="param__details">
-											<span class="bold"> {{ $p['name'] }} </span> [{{ $p['type'] }}] {{ $p['desc'] }}
+											<span class="bold"> {{ $p['name'] }} </span>
+											<span class="bold"> [{{ $p['type'] }}] </span>
+											{{ $p['desc'] }}
 
 											@if($p['required'] == true)
 												<span class="bold-red">(required)</span>
 											@endif
 
-											@if(!empty($p['default']))
-												<div class="bold__title">Default:</div>
-												<div class="param__bg">
-													{{ $p['default'] }}
-												</div>
-											@endif
+											<div class="tab">
+												@if(!empty($p['default']))
+													<div class="bold__title">Default:</div>
+													<div class="param__bg">
+														{{ $p['default'] }}
+													</div>
+												@endif
 
-											@if(!empty($p['sample']))
-												<div class="bold__title">Sample:</div>
-												<div class="param__bg">
-													<code>
-													{{ $p['sample'] }}
-													</code>
-												</div>
-											@endif
+												@if(!empty($p['sample']))
+													<div class="bold__title">Sample:</div>
+													<div class="param__bg">
+														<code>
+														{{ $p['sample'] }}
+														</code>
+													</div>
+												@endif
+											</div>
 										</div>
 									@endforeach
 								</div>
@@ -147,35 +157,36 @@
 								<div>
 									@foreach ($m['responses'] as $p)
 										<div class="param__details">
-											<span class="bold"> {{ $p['code'] }} </span>
-											{{ $p['desc'] }}
+											<span class="bold"> {{ $p['code'] }} </span>  {{ $p['desc'] }}
 
-											@if(!empty($p['sample']))
-												<div class="bold__title">Sample:</div>
-												<div class="param__bg">
-													<code>
-													{{ $p['sample'] }}
-													</code>
-												</div>
-											@endif
-
-											@if(!empty($p['model']))
-												<div class="bold__title">Model:</div>
-												<div class="param__bg">
-													{{ $p['model'] }}
-												</div>
-											@endif
-
-											@if(!empty($p['headers']))
-												<div class="bold__title">Headers:</div>
-												@foreach ($p['headers'] as $h)
-													<div class="header">
-														<div class="header__name">{{ $h['name'] }}</div>
-														<div class="header__desc">{{ $h['desc'] }}</div>
-														<div class="header__type">({{ $h['type'] }})</div>
+											<div class="tab">
+												@if(!empty($p['sample']))
+													<div class="bold__title">Sample:</div>
+													<div class="param__bg">
+														<code>
+														{{ $p['sample'] }}
+														</code>
 													</div>
-												@endforeach
-											@endif
+												@endif
+
+												@if(!empty($p['model']))
+													<div class="bold__title">Model:</div>
+													<div class="param__bg">
+														{{ $p['model'] }}
+													</div>
+												@endif
+
+												@if(!empty($p['headers']))
+													<div class="bold__title">Headers:</div>
+													@foreach ($p['headers'] as $h)
+														<div class="header">
+															<div class="header__name">{{ $h['name'] }}</div>
+															<div class="header__desc">{{ $h['desc'] }}</div>
+															<div class="header__type">({{ $h['type'] }})</div>
+														</div>
+													@endforeach
+												@endif
+											</div>
 										</div>
 									@endforeach
 								</div>
