@@ -8,9 +8,14 @@ class Part
 {
 	private $methods = [];
 
-	function __construct($title, $desc)
+	function __construct($title, $desc, $uid = '')
 	{
 		$this->id = uniqid();
+
+		if(!empty($id)) {
+			$this->id = $uid;
+		}
+
 		$this->title = $title;
 		$this->desc = $desc;
 	}
