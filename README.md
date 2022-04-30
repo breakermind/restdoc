@@ -1,5 +1,5 @@
 # RestDoc
-Rest api documentation library.
+Rest Api documentation generator for PHP projects.
 
 ## Install
 ```sh
