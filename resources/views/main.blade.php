@@ -12,6 +12,7 @@
 	<style type="text/css">
 		* {box-sizing: border-box; font-family: 'Fira Code';}
 		body {padding: 0px;}
+		pre {margin: 0px; background: #00339905; border-radius: 6px; padding: 5px;}
 		.scroll-top {padding: 15px; position: fixed; right: 10px; bottom: 10px; color: #fff; background: #0099ff; border-radius: 6px; transition: all .6s; box-shadow: 0px 1px 3px #0099ff66;}
 		.scroll-top:hover {background: #55cc55; cursor: pointer;}
 		.box {float: left; width: 100%; padding: 10px; box-sizing: border-box;}
@@ -140,12 +141,17 @@
 													</div>
 												@endif
 
-												@if(!empty($p['sample']))
+												@if(!empty($p['sample']) && $p['type'] == 'json')
 													<div class="bold__title">Sample:</div>
 													<div class="param__bg">
-														<code>
-														{{ $p['sample'] }}
-														</code>
+														<pre>{{ json_encode(json_decode($p['sample'], true), JSON_PRETTY_PRINT) }}</pre>
+													</div>
+												@endif
+
+												@if(!empty($p['sample']) && $p['type'] != 'json')
+													<div class="bold__title">Sample:</div>
+													<div class="param__bg">
+														<code>{{ $p['sample'] }}</code>
 													</div>
 												@endif
 											</div>
@@ -163,9 +169,7 @@
 												@if(!empty($p['sample']))
 													<div class="bold__title">Sample:</div>
 													<div class="param__bg">
-														<code>
-														{{ $p['sample'] }}
-														</code>
+														<pre>{{ json_encode(json_decode($p['sample'], true), JSON_PRETTY_PRINT) }}</pre>
 													</div>
 												@endif
 
