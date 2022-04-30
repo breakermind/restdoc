@@ -12,6 +12,8 @@
 	<style type="text/css">
 		* {box-sizing: border-box; font-family: 'Fira Code';}
 		body {padding: 0px;}
+		.scroll-top {padding: 15px; position: fixed; right: 10px; bottom: 10px; color: #fff; background: #0099ff; border-radius: 6px; transition: all .6s; box-shadow: 0px 1px 3px #0099ff66;}
+		.scroll-top:hover {background: #55cc55; cursor: pointer;}
 		.box {float: left; width: 100%; padding: 10px; box-sizing: border-box;}
 		a {text-decoration: none; color: #fff; color: #003399; border:  1px solid #003399; background: #00339911;}
 		.title {float: left; width: 100%; color: #003399; font-size: 21px; font-weight: 300; margin-bottom: 10px;}
@@ -184,5 +186,7 @@
 			@endforeach
 		</div>
 	</div>
+
+	<i class="fas fa-chevron-up scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"></i>
 </body>
 </html>
