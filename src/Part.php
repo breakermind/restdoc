@@ -8,12 +8,12 @@ class Part
 {
 	private $methods = [];
 
-	function __construct($title, $desc, $uid = '')
+	function __construct($title, $desc, $link_unique_slug = '')
 	{
 		$this->id = uniqid();
 
-		if(!empty($uid)) {
-			$this->id = $uid;
+		if(!empty($link_unique_slug)) {
+			$this->id = $link_unique_slug;
 		}
 
 		$this->title = $title;
