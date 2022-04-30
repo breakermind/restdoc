@@ -17,7 +17,7 @@ composer dump-autoload -o
 
 ### Publish routes
 ```sh
-# edit routes routes/restdoc.php
+# edit app routes in: routes/_restdoc/routes.php
 php artisan vendor:publish --tag=restdoc-routes
 ```
 
