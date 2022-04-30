@@ -42,9 +42,9 @@
 		.part .method-delete {color: #fff; background: #ff2200;}
 
 		.open .part {border-radius: 6px 6px 0px 0px;}
-		.row__details {display: none; float: left; width: 100%; margin: 0px 0px 20px 0px; padding: 10px; border-radius: 6px;}
+		.row__details {display: none; float: left; width: 100%; margin: 0px 0px 20px 0px; padding: 10px 20px; border-radius: 6px;}
 		.open + .row__details {display: inherit; font-size: 15px;}
-		.row__details_title {font-size: 18px; font-weight: 700; float: left; width: 100%; padding: 10px; margin: 5px 0px; border-radius: 6px;}
+		.row__details_title {font-size: 18px; font-weight: 700; float: left; width: 100%; padding: 10px 0px 5px 0px; margin: 5px 0px; border-radius: 0px;}
 		.param__bg {float: left; width: 100%; padding: 5px 0px; color: #003399; border-radius: 6px;}
 		.param__details {float: left; width: 100%; padding: 5px 0px;}
 		.bold {color: #039 !important; font-weight: 700}
@@ -53,7 +53,7 @@
 		.header {display: flex; float: left; width: 100%; padding: 5px 0px}
 		.header__name {font-weight: 700; padding-right: 5px; color: #003399}
 		.header__desc {font-weight: 400; padding-right: 5px;}
-		.header__type {font-weight: 700; padding-right: 5px;}
+		.header__type {font-weight: 700; padding-right: 5px; color: #003399}
 
 		.border-get {border-bottom: 1px solid #0099ff;}
 		.border-post {border-bottom: 1px solid #55cc55;}
@@ -66,7 +66,7 @@
 		i {padding: 0px;}
 
 		@media all and (max-width: 480px) {
-			* { font-size: 14px !important; }
+			/* * { font-size: 14px !important; } */
 		}
 	</style>
 
@@ -115,8 +115,9 @@
 									<div class="row__details_title border-{{ strtolower($m['method']->label()) }}">Request headers</div>
 									@foreach ($m['headers'] as $h)
 										<div class="param__details">
-											<span class="bold"> {{ $h['name'] }}  </span>  {{ $h['desc'] }}
-											<span class="bold-red">({{ $h['type'] }})</span>
+											<span class="bold"> {{ $h['name'] }}  </span>
+											<span class="bold">[{{ $h['type'] }}] </span>
+											{{ $h['desc'] }}
 										</div>
 									@endforeach
 								@endif
@@ -185,8 +186,8 @@
 													@foreach ($p['headers'] as $h)
 														<div class="header">
 															<div class="header__name">{{ $h['name'] }}</div>
+															<div class="header__type">[{{ $h['type'] }}]</div>
 															<div class="header__desc">{{ $h['desc'] }}</div>
-															<div class="header__type">({{ $h['type'] }})</div>
 														</div>
 													@endforeach
 												@endif

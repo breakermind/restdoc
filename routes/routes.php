@@ -118,7 +118,7 @@ Route::get('/doc/v1', function () {
 		[
 			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been deleted']), '', [
 				Header::get('X-Rate-Limit', 'Calls per hour allowed by the user', 'integer'),
-				Header::get('X-Deleted-After', 'Date in UTC when user deleted', 'string'),
+				Header::get('X-Deleted-After', 'Date in UTC when user deleted', 'datetime'),
 			]),
 			Resp::get(401, 'Unauthorized'),
 			Resp::get(404, 'Not Found'),
