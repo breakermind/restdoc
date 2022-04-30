@@ -12,7 +12,7 @@ class Part
 	{
 		$this->id = uniqid();
 
-		if(!empty($id)) {
+		if(!empty($uid)) {
 			$this->id = $uid;
 		}
 
