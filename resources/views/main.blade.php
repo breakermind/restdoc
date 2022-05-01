@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 	<style type="text/css">
-		* {box-sizing: border-box; font-family: 'Fira Code';}
+		* {box-sizing: border-box; font-family: 'Fira Code'; font-size: 16px; transition: all .6s;}
 		body {padding: 0px;}
 		pre {margin: 0px; background: #00339905; border-radius: 6px; padding: 5px;}
 		.scroll-top {padding: 15px; position: fixed; right: 10px; bottom: 10px; color: #fff; background: #0099ff; border-radius: 6px; transition: all .6s; box-shadow: 0px 1px 3px #0099ff66;}
@@ -25,7 +25,6 @@
 		.part-box {float: left; width: 100%; padding: 10px 20px; border: 1px solid #00339911; overflow: hidden; border-radius: 6px; margin-bottom: 30px;}
 		.part-title {color: #003399; font-size: 21px; font-weight: 700; padding: 5px 0px; border-bottom: 1px solid #00339911;}
 		.part {display: flex; align-items: center; justify-content: start; margin: 10px 0px; border: 1px solid #55cc55; border-radius: 6px; cursor: pointer;}
-		.part .method-get {color: #fff; background: #0099ff;}
 		.part-get {color: #fff; background: #0099ff11; color: #0099ff; border: 1px solid #0099ff}
 		.part-post {color: #fff; background: #55cc5511; color: #55cc55; border: 1px solid #55cc55}
 		.part-put {color: #fff; background: #ff990011; color: #ff9900; border: 1px solid #ff9900}
@@ -62,11 +61,22 @@
 		.border-delete {border-bottom: 1px solid #ff2200;}
 
 		.tab {float: left; width: 100%; padding-left: 35px !important; box-sizing: border-box;}
-
 		i {padding: 0px;}
 
+		@media all and (max-width: 640px) {
+			* { font-size: 14px !important;}
+			.menu__link {padding: 8px 12px; margin: 5px 5px 5px 0px;}
+			.part-box {padding: 5px 10px;}
+			.row__details {padding: 0px 10px}
+			.part .method {padding: 5px; margin: 5px; min-width: 60px;}
+			.part .route {padding: 5px; margin: 5px;}
+			.part .description {padding: 5px; margin: 5px;}
+
+		}
+
 		@media all and (max-width: 480px) {
-			/* * { font-size: 14px !important; } */
+			* { font-size: 12px !important; }
+			.menu__link {padding: 5px 10px; margin: 5px 5px 5px 0px;}
 		}
 	</style>
 
