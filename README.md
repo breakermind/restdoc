@@ -41,10 +41,7 @@ Example in: routes/routes.php
 use Illuminate\Support\Facades\Route;
 use RestDoc\Doc;
 use RestDoc\Http;
-use RestDoc\Header;
 use RestDoc\Part;
-use RestDoc\Param;
-use RestDoc\Resp;
 
 Route::get('/doc/v1', function () {
 
@@ -60,15 +57,15 @@ Route::get('/doc/v1', function () {
 		'/users',
 		'Get users list',
 		[
-			Param::get('search', 'string (query)', 'Search users with words', false, '', ''),
+			Doc::param('search', 'string (query)', 'Search users with words', false, '', ''),
 		],
 		[
-			Resp::get(200, 'Ok', json_encode(['users' => [
+			Doc::resp(200, 'Ok', json_encode(['users' => [
 				['id' => 1, 'name' => 'Ala', 'username' => 'foczka', 'newsletter' => 0],
 				['id' => 2, 'name' => 'Marcin', 'username' => 'foczek', 'newsletter' => 1],
 			]]), 'App\Models\User'),
-			Resp::get(401, 'Unauthorized'),
-			Resp::get(404, 'Not Found'),
+			Doc::resp(401, 'Unauthorized'),
+			Doc::resp(404, 'Not Found'),
 		],
 		false
 	);
@@ -79,21 +76,21 @@ Route::get('/doc/v1', function () {
 		'/users/{userId}',
 		'Get user details',
 		[
-			Param::get('userId', 'integer', 'User id', true),
+			Doc::param('userId', 'integer', 'User id', true),
 		],
 		[
-			Resp::get(200, 'Ok', json_encode(['user' => [
+			Doc::resp(200, 'Ok', json_encode(['user' => [
 					'id' => '1',
 					'email' => 'user@email.here',
 					'name' => 'Marianek'
 				]])
 			),
-			Resp::get(401, 'Unauthorized'),
-			Resp::get(404, 'Not Found'),
+			Doc::resp(401, 'Unauthorized'),
+			Doc::resp(404, 'Not Found'),
 		],
 		true,
 		[
-			Header::get('Authorization', 'Bearer {token}', 'string'),
+			Doc::header('Authorization', 'Bearer {token}', 'string'),
 		],
 	);
 
@@ -103,24 +100,24 @@ Route::get('/doc/v1', function () {
 		'/users',
 		'Add user to the list',
 		[
-			Param::get('email', 'string', 'User email address', true, 'user@email.here'),
-			Param::get('password', 'string', 'User new password', true, 'UserpPssword69'),
-			Param::get('body', 'json', 'User email and password', false, json_encode([
+			Doc::param('email', 'string', 'User email address', true, 'user@email.here'),
+			Doc::param('password', 'string', 'User new password', true, 'UserpPssword69'),
+			Doc::param('body', 'json', 'User email and password', false, json_encode([
 				'email' => 'user@email.here',
 				'password' => 'Secret Pass Here'
 			])),
 		],
 		[
-			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been created'])),
-			Resp::get(401, 'Unauthorized'),
-			Resp::get(404, 'Not Found'),
-			Resp::get(422, 'Error', json_encode(['msg' => 'Invalid user email address'])),
+			Doc::resp(200, 'Ok', json_encode(['msg' => 'User has been created'])),
+			Doc::resp(401, 'Unauthorized'),
+			Doc::resp(404, 'Not Found'),
+			Doc::resp(422, 'Error', json_encode(['msg' => 'Invalid user email address'])),
 		],
 		true,
 		[
-			Header::get('Authorization', 'Bearer {token}', 'string'),
-			Header::get('Content-Type', 'application/json', 'string'),
-			Header::get('Accept', 'application/json', 'string'),
+			Doc::header('Authorization', 'Bearer {token}', 'string'),
+			Doc::header('Content-Type', 'application/json', 'string'),
+			Doc::header('Accept', 'application/json', 'string'),
 		],
 	);
 
@@ -130,18 +127,18 @@ Route::get('/doc/v1', function () {
 		'/users/{userId}',
 		'Update user',
 		[
-			Param::get('userId', 'integer', 'User id', true),
-			Param::get('email', 'string', 'User email address', true, 'user@email.here'),
-			Param::get('name', 'string', 'User name', true, 'User Name'),
+			Doc::param('userId', 'integer', 'User id', true),
+			Doc::param('email', 'string', 'User email address', true, 'user@email.here'),
+			Doc::param('name', 'string', 'User name', true, 'User Name'),
 		],
 		[
-			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been updated'])),
-			Resp::get(401, 'Unauthorized'),
-			Resp::get(404, 'Not Found'),
+			Doc::resp(200, 'Ok', json_encode(['msg' => 'User has been updated'])),
+			Doc::resp(401, 'Unauthorized'),
+			Doc::resp(404, 'Not Found'),
 		],
 		true,
 		[
-			Header::get('Authorization', 'Bearer {token}', 'string'),
+			Doc::header('Authorization', 'Bearer {token}', 'string'),
 		],
 	);
 
@@ -151,27 +148,24 @@ Route::get('/doc/v1', function () {
 		'/users/{userId}',
 		'Delete user with id',
 		[
-			Param::get('userId', 'integer', 'User id', true),
+			Doc::param('userId', 'integer', 'User id', true),
 		],
 		[
-			Resp::get(200, 'Ok', json_encode(['msg' => 'User has been deleted']), '', [
-				Header::get('X-Rate-Limit', 'Calls per hour allowed by the user', 'integer'),
-				Header::get('X-Deleted-After', 'Date in UTC when user deleted', 'string'),
+			Doc::resp(200, 'Ok', json_encode(['msg' => 'User has been deleted']), '', [
+				Doc::header('X-Rate-Limit', 'Calls per hour allowed by the user', 'integer'),
+				Doc::header('X-Deleted-After', 'Date in UTC when user deleted', 'datetime'),
 			]),
-			Resp::get(401, 'Unauthorized'),
-			Resp::get(404, 'Not Found'),
+			Doc::resp(401, 'Unauthorized'),
+			Doc::resp(404, 'Not Found'),
 		],
 		true,
 		[
-			Header::get('Authorization', 'Bearer {token}', 'string'),
+			Doc::header('Authorization', 'Bearer {token}', 'string'),
 		],
 	);
 
 	// Add part to docs
 	$doc->part($part);
-
-	// Show json
-	// return $doc->parts();
 
 	// Show html
 	return view('restdoc::main', ['doc' => $doc]);
