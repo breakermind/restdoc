@@ -3,7 +3,7 @@ Laravel Rest Api documentation generator for PHP projects.
 
 ## Install
 ```sh
-composer require breakermind/restdoc 1.0.*
+composer require breakermind/restdoc 2.0.*
 ```
 
 ### Update packages
