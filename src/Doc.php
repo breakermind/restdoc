@@ -22,4 +22,9 @@ class Doc
 	{
 		return $this->parts;
 	}
+
+	static function jsonPretty($json)
+	{
+		return json_encode(json_decode($json, true), JSON_PRETTY_PRINT);
+	}
 }

@@ -71,7 +71,6 @@
 			.part .method {padding: 5px; margin: 5px; min-width: 60px;}
 			.part .route {padding: 5px; margin: 5px;}
 			.part .description {padding: 5px; margin: 5px;}
-
 		}
 
 		@media all and (max-width: 480px) {
@@ -155,7 +154,7 @@
 												@if(!empty($p['sample']) && $p['type'] == 'json')
 													<div class="bold__title">Sample:</div>
 													<div class="param__bg">
-														<pre>{{ json_encode(json_decode($p['sample'], true), JSON_PRETTY_PRINT) }}</pre>
+														<pre>{{ \RestDoc\Doc::jsonPretty($p['sample']) }}</pre>
 													</div>
 												@endif
 
@@ -180,7 +179,7 @@
 												@if(!empty($p['message']))
 													<div class="bold__title">Message:</div>
 													<div class="param__bg">
-														<pre>{{ json_encode(json_decode($p['message'], true), JSON_PRETTY_PRINT) }}</pre>
+														<pre>{{ \RestDoc\Doc::jsonPretty($p['message']) }}</pre>
 													</div>
 												@endif
 
