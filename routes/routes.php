@@ -8,7 +8,7 @@ use RestDoc\Part;
 Route::get('/doc/v1', function () {
 
 	// Docs
-	$doc = new Doc('User Api', 'User rest api documentation.');
+	$doc = new Doc('Rest Api Docs', 'Rest api documentation.');
 
 	// Rest Api Part
 	$part = new Part('User', 'Users rest api routes.');
